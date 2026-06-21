@@ -1,0 +1,14 @@
+# keep the build context small + reproducible
+.git
+.venv
+venv
+__pycache__
+*.pyc
+.mypy_cache
+.ruff_cache
+.pytest_cache
+data
+*.db
+frontend/node_modules
+frontend/dist
+.env

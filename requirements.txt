@@ -1,0 +1,29 @@
+# --- core (needed to run the API + pipeline) ---
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+pydantic-settings>=2.3
+sqlmodel>=0.0.21
+psycopg[binary]>=3.1        # Postgres driver (postgresql+psycopg://); SQLite needs nothing
+python-multipart>=0.0.9
+Pillow>=10.3
+numpy>=1.26
+
+# --- vision / ML (heavy; required for real detection, not for unit tests) ---
+ultralytics>=8.3            # YOLO11/YOLOv8 detector (auto-downloads COCO weights)
+fast-alpr>=0.1             # license-plate detection + OCR (enable via PLATE_PROVIDER=fastalpr)
+onnxruntime>=1.17          # runtime fast-alpr's ONNX models need (without it, plates read nothing)
+opencv-python-headless>=4.9 # Phase 4: preprocessing
+
+# --- agentic / legal ---
+google-genai>=1.0          # Gemini free-tier VLM (current SDK; provider-agnostic wrapper)
+# chromadb>=0.5            # optional legal-RAG bonus
+# sentence-transformers    # optional legal-RAG bonus
+
+# --- geometry (Phase 4 calibration zones) ---
+shapely>=2.0
+
+# --- dev ---
+pytest>=8.2
+ruff>=0.5
+mypy>=1.10

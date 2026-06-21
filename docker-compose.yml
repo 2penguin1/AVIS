@@ -1,0 +1,38 @@
+# Production-credible stack. The app runs against Postgres + MinIO; Redis is here for
+# the worker queue you switch on when moving off in-process background tasks (DESIGN §13).
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: avis
+      POSTGRES_PASSWORD: avis
+      POSTGRES_DB: avis
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: avis
+      MINIO_ROOT_PASSWORD: avis12345
+    ports: ["9000:9000", "9001:9001"]
+    volumes: ["miniodata:/data"]
+
+  api:
+    build: .
+    depends_on: [postgres, redis, minio]
+    environment:
+      DATABASE_URL: postgresql+psycopg://avis:avis@postgres:5432/avis
+      LLM_PROVIDER: ${LLM_PROVIDER:-null}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+    ports: ["8000:8000"]
+    volumes: ["./data:/app/data"]
+
+volumes:
+  pgdata:
+  miniodata:

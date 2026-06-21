@@ -1,0 +1,16 @@
+{
+  "_comment": "Template. Put labelled eval images under data/eval/ and list them here. 'expected' = the violation types truly present in the image; 'plate' is optional ground-truth for OCR scoring. Include clean (no-violation) images with expected: [] to measure false positives.",
+  "samples": [
+    {
+      "image": "data/eval/sample1.jpg",
+      "camera_id": "cam_demo",
+      "expected": ["HELMET_NON_COMPLIANCE", "TRIPLE_RIDING"],
+      "plate": "UP32AB1234"
+    },
+    {
+      "image": "data/eval/sample2.jpg",
+      "camera_id": "cam_demo",
+      "expected": []
+    }
+  ]
+}

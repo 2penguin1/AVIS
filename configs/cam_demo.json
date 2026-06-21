@@ -1,0 +1,16 @@
+{
+  "camera_id": "cam_demo",
+  "lane_direction": "north",
+  "zones": [
+    {
+      "id": "stopline_1",
+      "kind": "stop_line",
+      "polygon": [[0, 380], [800, 380], [800, 430], [0, 430]]
+    },
+    {
+      "id": "noparking_1",
+      "kind": "no_parking",
+      "polygon": [[600, 100], [780, 100], [780, 320], [600, 320]]
+    }
+  ]
+}
