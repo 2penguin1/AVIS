@@ -14,3 +14,4 @@ data/
 .pytest_cache/
 node_modules/
 frontend/dist/
+CLAUDE.md
