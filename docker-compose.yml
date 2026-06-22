@@ -30,8 +30,8 @@ services:
       DATABASE_URL: postgresql+psycopg://avis:avis@postgres:5432/avis
       LLM_PROVIDER: ${LLM_PROVIDER:-null}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
-    ports: ["8000:8000"]
-    volumes: ["./data:/app/data"]
+    ports: ["8000:7860"]
+    volumes: ["./data:/home/user/app/data"]
 
 volumes:
   pgdata:

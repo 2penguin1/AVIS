@@ -5,11 +5,14 @@ import ByRouteChart from '../components/charts/ByRouteChart.jsx'
 import ByTypeChart from '../components/charts/ByTypeChart.jsx'
 import Spinner from '../components/common/Spinner.jsx'
 
-function Kpi({ n, l }) {
+function Kpi({ n, l, color = 'var(--blue)' }) {
   return (
-    <div className="kpi">
-      <div className="n">{n}</div>
-      <div className="l">{l}</div>
+    <div style={{
+      padding: '16px', borderRadius: '10px', border: '1px solid var(--line)', background: 'var(--card2)',
+      borderTop: `3px solid ${color}`, flex: '1 1 140px', display: 'flex', flexDirection: 'column', gap: '6px'
+    }}>
+      <span style={{ fontSize: '24px', fontWeight: 'bold', color: color }}>{n}</span>
+      <span className="muted">{l}</span>
     </div>
   )
 }
@@ -30,11 +33,11 @@ export default function AnalyticsPage() {
 
   return (
     <>
-      <div className="card kpis">
-        <Kpi n={a.total} l="Total violations" />
-        <Kpi n={confirmed} l="Confirmed (no human)" />
-        <Kpi n={a.pending_review} l="Pending review" />
-        <Kpi n={a.plates_read ?? 0} l="Plates read" />
+      <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '16px' }}>
+        <Kpi n={a.total} l="Total violations" color="var(--blue)" />
+        <Kpi n={confirmed} l="Confirmed (no human)" color="var(--ok)" />
+        <Kpi n={a.pending_review} l="Pending review" color="var(--warn)" />
+        <Kpi n={a.plates_read ?? 0} l="Plates read" color="var(--txt)" />
       </div>
 
       <div className="card">

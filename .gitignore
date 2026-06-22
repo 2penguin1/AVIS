@@ -7,8 +7,6 @@ venv/
 data/
 *.pt
 *.onnx
-# ...but keep the bundled helmet model (the project ships with it)
-!models/helmet/best.pt
 .mypy_cache/
 .ruff_cache/
 .pytest_cache/
